@@ -1,7 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { SecondaryFormSection } from '@/shared/sections/secondary-form-section'
+</script>
 
 <template>
-    <div>
-        <h1>This is an about page</h1>
-    </div>
+    <SecondaryFormSection />
 </template>

@@ -5,7 +5,9 @@ import { LayoutContainer } from '@/app/providers/layout-container'
 <template>
     <LayoutContainer>
         <router-view v-slot="{ Component }">
-            <component :is="Component" />
+            <Transition name="slide">
+                <component :is="Component" />
+            </Transition>
         </router-view>
     </LayoutContainer>
 </template>

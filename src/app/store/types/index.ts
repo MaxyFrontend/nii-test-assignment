@@ -1,16 +1,12 @@
 import type { Mutations } from './mutations'
-import type { Actions } from './actions'
 import type { State } from './state'
 import type { Commit } from './commit'
-import type { Dispatch } from './dispatch'
 import type { Store as VuexStore } from 'vuex'
 
-type RootCommit = Commit<Actions>
-type RootDispatch = Dispatch<Mutations>
+type RootCommit = Commit<Mutations>
 
 export interface Store extends VuexStore<State> {
     commit: RootCommit
-    dispatch: RootDispatch
 }
 
 export type ActionsWithContext<
@@ -20,7 +16,6 @@ export type ActionsWithContext<
         this: Store,
         context: {
             commit: RootCommit
-            dispatch: RootDispatch
             state: State
         },
         ...args: Parameters<T[K]>
