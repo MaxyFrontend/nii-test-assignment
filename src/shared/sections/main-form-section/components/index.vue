@@ -55,7 +55,8 @@ const formInitHandler = (formState: FormState) => {
                         :class="[s.textareaField]"
                         :model-value="mainFormState.description"
                         v-bind="data.field"
-                        :textarea-class="s.textarea"
+                        :element-class="s.textarea"
+                        :label-class="s.textareaFieldLabel"
                         @update:model-value="
                             updateFieldValue(data.field.name, $event)
                         "
@@ -80,5 +81,8 @@ const formInitHandler = (formState: FormState) => {
 }
 .textarea {
     border-color: rgb(121, 91, 193);
+}
+.textareaFieldLabel {
+    color: rgb(82, 10, 115);
 }
 </style>

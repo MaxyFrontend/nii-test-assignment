@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import { FieldLabel } from '../../field-label'
 import type { BaseProps } from '../../types/props'
-// import type { CSSModuleClasses } from 'vue'
 
 type Props = BaseProps & {
     resize?: 'none' | 'both' | 'vertical' | 'horizontal'
-    textareaClass?: string
+    labelClass?: string
+    elementClass?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
     resize: 'none',
-    textareaClass: ''
+    elementClass: undefined,
+    labelClass: undefined
 })
 
 const emit = defineEmits<{
@@ -22,11 +23,11 @@ emit('update:modelValue', props.modelValue)
 
 <template>
     <div :class="s.field">
-        <FieldLabel :class="s.label">
+        <FieldLabel :class="[s.label, [props.labelClass]]">
             {{ props.label }}
         </FieldLabel>
         <textarea
-            :class="[s.textarea, [props.textareaClass]]"
+            :class="[s.textarea, [props.elementClass]]"
             v-bind="props.attributes"
             :value="props.modelValue"
             :style="{

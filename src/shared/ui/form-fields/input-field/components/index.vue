@@ -4,12 +4,14 @@ import type { BaseProps } from '../../types/props'
 
 type Props = BaseProps & {
     type?: 'text' | 'tel' | 'email'
-    inputClass?: string
+    labelClass?: string
+    elementClass?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
     type: 'text',
-    inputClass: ''
+    labelClass: undefined,
+    elementClass: undefined
 })
 
 const emit = defineEmits<{
@@ -20,11 +22,11 @@ emit('update:modelValue', props.modelValue)
 
 <template>
     <div :class="s.field">
-        <FieldLabel :class="s.label">
+        <FieldLabel :class="[s.label, [props.labelClass]]">
             {{ props.label }}
         </FieldLabel>
         <input
-            :class="[s.input, [props.inputClass]]"
+            :class="[s.input, [props.elementClass]]"
             v-bind="props.attributes"
             :type="props.type"
             :value="props.modelValue"

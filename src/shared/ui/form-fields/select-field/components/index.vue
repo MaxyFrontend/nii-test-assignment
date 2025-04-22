@@ -6,7 +6,8 @@ import type { Options } from '../types/select'
 type Props = BaseProps & {
     options: Options
     defaultValue?: string
-    selectClass?: string
+    labelClass?: string
+    elementClass?: string
 }
 
 const props = defineProps<Props>()
@@ -30,11 +31,11 @@ if (defaultOption) {
 
 <template>
     <div :class="s.field">
-        <FieldLabel :class="s.label">
+        <FieldLabel :class="[s.label, [props.labelClass]]">
             {{ props.label }}
         </FieldLabel>
         <select
-            :class="[s.select, [props.selectClass]]"
+            :class="[s.select, [props.elementClass]]"
             v-bind="props.attributes"
             :value="props.modelValue"
             @change="

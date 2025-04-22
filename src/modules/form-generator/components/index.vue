@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, useTemplateRef, watchEffect } from 'vue'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 import { InputField } from '@/shared/ui/form-fields/input-field'
 import { SelectField } from '@/shared/ui/form-fields/select-field'
 import { CheckboxField } from '@/shared/ui/form-fields/checkbox-field'
@@ -18,8 +18,6 @@ const props = defineProps<Props>()
 const localState = ref({ ...props.state })
 
 const formFields = computed(() => props.fields)
-
-const formRef = useTemplateRef<HTMLFormElement>('formRef')
 
 const fieldComponentsMap = {
     input: InputField,
@@ -69,7 +67,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <form ref="formRef" :class="s.form" @submit="formSubmitHandler">
+    <form :class="s.form" @submit="formSubmitHandler">
         <slot
             v-for="field in formFields"
             :key="field.name"

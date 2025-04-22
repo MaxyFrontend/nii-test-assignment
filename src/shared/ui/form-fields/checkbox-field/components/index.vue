@@ -7,12 +7,14 @@ type Props = BaseProps & {
     falseValue: string
     type?: 'checkbox'
     checked?: boolean
-    checkboxClass?: string
+    labelClass?: ''
+    elementClass?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
     type: 'checkbox',
-    checkboxClass: ''
+    elementClass: undefined,
+    labelClass: undefined
 })
 
 const emit = defineEmits<{
@@ -32,7 +34,7 @@ if (
 <template>
     <label :class="s.field">
         <input
-            :class="[s.checkbox, [props.checkboxClass]]"
+            :class="[s.checkbox, [props.elementClass]]"
             v-bind="props.attributes"
             :type="props.type"
             :checked="props.trueValue === props.modelValue"
@@ -45,7 +47,7 @@ if (
                 )
             "
         />
-        <FieldLabel>
+        <FieldLabel :class="[s.label, [props.labelClass]]">
             {{ props.label }}
         </FieldLabel>
     </label>
